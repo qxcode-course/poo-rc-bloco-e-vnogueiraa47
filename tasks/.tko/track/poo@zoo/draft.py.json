@@ -1,0 +1,9 @@
+{
+    "patches": [
+        {
+            "label": "2025-12-04_13-40-15",
+            "content": "from abc import ABC, abstractmethod",
+            "lines": "1"
+        }
+    ]
+}
