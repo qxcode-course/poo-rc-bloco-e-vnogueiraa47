@@ -1,0 +1,9 @@
+{
+    "patches": [
+        {
+            "label": "2025-12-08_12-33-31",
+            "content": "class Pagamento:\n    ",
+            "lines": "2"
+        }
+    ]
+}
