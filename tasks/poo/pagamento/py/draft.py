@@ -18,5 +18,8 @@ class Pagamento(ABC):
         pass
 
 class CartaoCredito(Pagamento):
-    
+    def __init__(self, numero: int, nome: str, limite: int):
+        self.numero = numero
+        self.nome_titular = nome
+        self.limite_disponivel = limite
 
