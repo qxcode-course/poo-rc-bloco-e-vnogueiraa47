@@ -1,0 +1,24 @@
+{
+    "patches": [
+        {
+            "label": "2025-12-10_05-06-52",
+            "content": "@@ -1,167 +1 @@\n-from abc import ABC, abstractmethod%0A%0Aclass Shape(ABC):%0A    def getArea(self):%0A        pass%0A    def getPerimeter(self):%0A        pass%0A    def getName(self):%0A        pass\n+%0A\n",
+            "lines": "1"
+        },
+        {
+            "label": "2025-12-10_05-43-58",
+            "content": "@@ -30,17 +30,16 @@\n method%0A%0A\n-%0A\n class Sh\n@@ -48,36 +48,16 @@\n e(ABC):%0A\n-    @abstractmethod%0A\n     def \n@@ -83,37 +83,16 @@\n     pass\n-%0A%0A    @abstractmethod\n %0A    def\n@@ -128,29 +128,8 @@\n pass\n-%0A%0A    @abstractmethod\n %0A   \n@@ -140,32 +140,32 @@\n  getName(self):%0A\n+\n         pass%0A%0Acl\n@@ -164,351 +164,4 @@\n pass\n-%0A%0Aclass Point2D:%0A    def __init__(self, x: int, y: int):%0A        self.x = x%0A        self.y = y%0A    def __str__(self):%0A        return f%22(%7Bself.x:.2f%7D:%7Bself.y:.2f%7D)%22%0A%0Aclass Circle(Shape):%0A    def __init__(self,center: Point2D, radius: int):%0A        self.center = center%0A        self.radius = radius%0A    %0A    def getName(self):%0A        return f%22Circ%22\n",
+            "lines": "9"
+        },
+        {
+            "label": "2025-12-10_06-02-27",
+            "content": "@@ -30,16 +30,17 @@\n method%0A%0A\n+%0A\n class Sh\n@@ -213,15 +213,8 @@\n elf)\n- -%3E str\n :%0A  \n@@ -574,129 +574,4 @@\n irc%22\n-%0A%0A    def getArea(self):%0A        area = 3,14 * (self.radius**2)%0A        return area%0A    %0A    def getPerimeter(self):%0A        \n",
+            "lines": "30"
+        },
+        {
+            "label": "2025-12-10_06-11-39",
+            "content": "from abc import ABC, abstractmethod\n\nclass Shape(ABC):\n    @abstractmethod\n    def getArea(self):\n        pass\n\n    @abstractmethod\n    def getPerimeter(self):\n        pass\n\n    @abstractmethod\n    def getName(self) -> str:\n        pass\n\nclass Point2D:\n    def __init__(self, x: int, y: int):\n        self.x = x\n        self.y = y\n    def __str__(self):\n        return f\"({self.x:.2f}:{self.y:.2f})\"\n\nclass Circle(Shape):\n    def __init__(self,center: Point2D, radius: int):\n        self.center = center\n        self.radius = radius\n    \n    def getName(self):\n        return f\"Circ\"\n\n    def getArea(self):\n        area = 3,14 * (self.radius**2)\n        return area\n    \n    def getPerimeter(self):\n        ",
+            "lines": "36"
+        }
+    ]
+}
