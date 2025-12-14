@@ -76,7 +76,9 @@ A classe `Rectangle` tamb√©m implementa a interface `Shape` e representa um ret√
 
 ![diagrama](../../.tko/cahe/poo/base/shapes/diagrama.png)
 
-[![youtube icon](../../.tko/cache/poo/base/shapes/..//yousolver.png)](https://youtu.be/VMHI9mjIwZQ?si=jUgIc0AT9YY3Dc7K)
+[![youtube icon](../../.tko/cache/poo/base/shapes/..//yousolver.png)](
+  
+)
 
 
 ## Shell

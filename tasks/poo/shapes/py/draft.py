@@ -18,7 +18,7 @@ class Point2D:
         self.x = x
         self.y = y
     def __str__(self):
-        return f"({self.x:.2f}:{self.y:.2f})"
+        return f"{self.x:.2f}, {self.y:.2f}"
 
 class Circle(Shape):
     def __init__(self,center: Point2D, radius: int, name: str):
@@ -30,15 +30,15 @@ class Circle(Shape):
         return self.name
 
     def getArea(self):
-        area = 3.14 * (self.radius**2)
+        area = 3.141592 * (self.radius**2)
         return area
     
     def getPerimeter(self):
-        p = 2 * 3.14 * self.radius
+        p = 2 * 3.141592 * self.radius
         return p
     
     def __str__(self):
-        return f"Circ: C=({self.center}), R={self.radius}"
+        return f"Circ: C=({self.center}), R={self.radius:.2f}"
 
 class Rectangle(Shape):
     def __init__(self, p1: Point2D, p2: Point2D, name:str):
@@ -69,7 +69,49 @@ class Rectangle(Shape):
         return f
     
     def __str__(self):
-        return f"Rect: P1=(x1, {}) P2=(x2, y2)"
+        return f"Rect: P1=({self.p1}) P2=({self.p2})"
+
+def main():
+    shapes = []
+
+    while True:
+        line = input()
+        print("$" + line)
+        args = line.split()
+        command = args[0]
+
+        if command == "end":
+            break
+
+        elif command == "show":
+            for s in shapes:
+                print(s)
+
+        elif command == "circle":
+            x = float(args[1])
+            y = float(args[2])
+            radius = float(args[3])
+            center = Point2D(x, y)
+            circ = Circle(center, radius, "Circ")
+            shapes.append(circ)
+        
+        elif command == "rect":
+            x1 = float(args[1])
+            y1 = float(args[2])
+            x2 = float(args[3])
+            y2 = float(args[4])
+            p1 = Point2D(x1, y1)
+            p2 = Point2D(x2, y2)
+            rect = Rectangle(p1, p2, "Rect")
+            shapes.append(rect)
+        
+        elif command == "info":
+            for s in shapes:
+                print(f"{s.getName()}: A={s.getArea():.2f} P={s.getPerimeter():.2f}")
+
+main()
+
+    
 
 
 
