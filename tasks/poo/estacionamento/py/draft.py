@@ -51,5 +51,20 @@ class Carro(Veiculo):
         else:
             valor = tempo/10
             return valor
+
+class Estacionamento:
+    def __init__(self):
+        self.Veiculos = []
+        self.horaAtual = int
+    
+    def _procurarVeiculo(self, id: str):
+        for i, veiculo in enumerate(self.veiculos):
+            if veiculo.id == id:
+                return i 
+        return -1
+
+    def estacionar(self, veiculo: Veiculo):
+        self.Veiculos.append(veiculo)
+
         
         
