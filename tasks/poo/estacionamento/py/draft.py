@@ -21,50 +21,111 @@ class Veiculo(ABC):
         pass
 
     def __str__(self):
-        return f"______{self.getTipo()} : ______{self.getId()} \n Hora atual: {self.getEntrada()}"
+        qtdTipo = 10 - len(self.tipo)
+        qtdId = 10 - len(self.id)
 
+        tipo = "_" * qtdTipo
+        Id = "_" * qtdId
+
+        tipoForm = tipo + self.tipo
+        idForm = Id + self.id
+
+        return tipoForm + " : " + idForm + " : " + str(self.hora)
+''
 class Bike(Veiculo):
-    def __init__(self, id: Veiculo):
+    def __init__(self, id):
         super().__init__(id, "Bike")
     
-    def calcularValor(self):
-        valor = 3
-        return valor
+    def calcularValor(self, horaSaida):
+        return 3.0
 
 class Moto(Veiculo):
-    def __init__(self, id: Veiculo):
+    def __init__(self, id):
         super().__init__(id, "Moto")
     
-    def calcularValor(self, horaSaida: int):
-        tempo = horaSaida
-        valor = tempo/20
+    def calcularValor(self, horaSaida):
+        tempo = horaSaida - self.getEntrada()
+        valor = tempo / 20.0
         return valor
     
 class Carro(Veiculo):
-    def __init__(self, id: Veiculo):
+    def __init__(self, id):
         super().__init__(id, "Carro")
     
-    def calcularValor(self, horaSaida: int):
-        tempo = horaSaida
-        if tempo <5:
-            return
+    def calcularValor(self, horaSaida):
+        tempo = horaSaida - self.getEntrada()
+        valor = tempo / 10.0
+        
+        if valor < 5.0:
+            return 5.0
         else:
-            valor = tempo/10
             return valor
 
 class Estacionamento:
     def __init__(self):
-        self.Veiculos = []
-        self.horaAtual = int
+        self.veiculos = []
+        self.horaAtual = 0
     
-    def _procurarVeiculo(self, id: str):
-        for i, veiculo in enumerate(self.veiculos):
-            if veiculo.id == id:
-                return i 
-        return -1
+    def estacionar(self, veiculo):
+        veiculo.setEntrada(self.horaAtual)
+        self.veiculos.append(veiculo)
+    
+    def pagar(self, id):
+        veiculo = None
+        for v in self.veiculos:
+            if v.getId() == id:
+                veiculo = v
+                break
+        
+        if veiculo:
+            valor = veiculo.calcularValor(self.horaAtual)
+            print(f"{veiculo.getTipo()} chegou {veiculo.getEntrada()} saiu {self.horaAtual}. Pagar R$ {valor:.2f}")
+            self.veiculos.remove(veiculo)
 
-    def estacionar(self, veiculo: Veiculo):
-        self.Veiculos.append(veiculo)
+    def __str__(self):
+        saida = ""
+        for veiculo in self.veiculos:
+            saida = saida + str(veiculo) + "\n"
+        
+        saida = saida + "Hora atual: " + str(self.horaAtual)
+        return saida
 
         
+def main():
+    
+    estacionamento = Estacionamento()
+
+    while True:
+        line = input()
+        print("$" + line)
+        args = line.split()
+        command = args[0]
+    
+        if command == "end":
+            break
         
+        elif command == "show":
+            print(estacionamento)
+
+        elif command == "tempo":
+            estacionamento.horaAtual = estacionamento.horaAtual + int(args[1])
+            
+        elif command == "estacionar":
+            tipo = args[1]
+            id_veiculo = args[2]
+            veiculo = None
+
+            if tipo == "bike":
+                veiculo = Bike(id_veiculo)
+            elif tipo == "moto":
+                veiculo = Moto(id_veiculo)
+            elif tipo == "carro":
+                veiculo = Carro(id_veiculo)
+            
+            if veiculo != None:
+                estacionamento.estacionar(veiculo)
+
+        elif command == "pagar":
+            estacionamento.pagar(args[1])
+
+main()
